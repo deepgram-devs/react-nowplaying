@@ -16,11 +16,10 @@
     "cross-browser",
     "cross-device"
   ],
-  "author": "",
+  "author": "Luke Oliff <luke.oliff@deepgram.com> (https://deepgram.com)",
   "license": "MIT",
   "scripts": {
     "dev": "concurrently --kill-others \"tsc-watch\" \"npm --prefix=demo/ run dev\"",
-    "preview-build": "tsc -p tsconfig.json && npm --prefix=demo/ run build",
     "build": "tsc -p tsconfig.json"
   },
   "resolutions": {
