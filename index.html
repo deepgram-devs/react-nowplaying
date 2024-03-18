@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.19.3/babel.js"></script>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      data-presets="react"
+      data-type="module"
+      src="/dist/index.js"
+    ></script>
+    <title>Demo React NowPlaying</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      data-presets="react"
+      data-type="module"
+    >
+      function playTestAudio () {
+        fetch(audioUrl)
+          .then(response => response.blob()) // Convert the response to a blob
+          .then(blob => {
+            setNowPlaying(blob)
+          })
+          .catch(error => console.error('Error fetching the audio:', error));
+      }
+
+      function Test() {
+        const { setNowPlaying } = useNowPlaying();
+        return <button onClick={() => playTestAudio()}>Play Audio</button>;
+      }
+
+      function App() {
+        return (
+          <NowPlayingContextProvider>
+            <Test />
+          </NowPlayingContextProvider>
+        );
+      }
+
+      // Render your component
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

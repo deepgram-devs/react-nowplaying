@@ -1,0 +1,55 @@
+{
+  "name": "react-nowplaying",
+  "version": "0.0.0",
+  "description": "A cross-browser cross-device friendly React context to auto-play audio in a browser.",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "browser-audio",
+    "andoird-audio",
+    "ios-audio",
+    "web-audio-api",
+    "cross-browser",
+    "cross-device"
+  ],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently --kill-others \"tsc-watch\" \"npm --prefix=demo/ run dev\"",
+    "preview-build": "tsc -p tsconfig.json && npm --prefix=demo/ run build",
+    "build": "tsc -p tsconfig.json"
+  },
+  "resolutions": {
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.1.0",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "concurrently": "^8.2.2",
+    "husky": "^9.0.11",
+    "nodemon": "^3.1.0",
+    "pretty-quick": "^4.0.0",
+    "react": "^18.2.0",
+    "regenerator-runtime": "^0.14.1",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.0.4"
+  },
+  "peerDependencies": {
+    "react": "^18"
+  },
+  "engines": {
+    "node": ">=20.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
