@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-      - "next/**"
-      - "rc/**"
-      - "beta/**"
-      - "alpha/**"
   workflow_dispatch:
 
 jobs:
@@ -32,8 +28,10 @@ jobs:
 
       - run: |
           npm ci
+          npm run build
 
       - name: Create a release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PUSH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
