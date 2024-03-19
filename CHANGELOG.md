@@ -1,5 +1,12 @@
 Change Log
 
+## [1.0.2](https://github.com/deepgram-devs/react-nowplaying/compare/1.0.1...1.0.2) (2024-03-19)
+
+
+### Bug Fixes
+
+* **build:** use tsup for build ([fd3e838](https://github.com/deepgram-devs/react-nowplaying/commit/fd3e8387bebd2074f2c0942b545712d917bf109b))
+
 ## [1.0.1](https://github.com/deepgram-devs/react-nowplaying/compare/1.0.0...1.0.1) (2024-03-19)
 
 
