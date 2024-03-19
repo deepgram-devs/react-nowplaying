@@ -57,6 +57,7 @@
   "engines": {
     "node": ">=18.19.1"
   },
+  "homepage": "https://react-nowplaying.vercel.app/?utm_source=npm",
   "repository": {
     "type": "git",
     "url": "https://github.com/deepgram-devs/react-nowplaying"
