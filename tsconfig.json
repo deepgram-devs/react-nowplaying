@@ -1,21 +1,19 @@
 {
-  "include": ["src"],
-  "exclude": ["node_modules/**/*.ts", "demo/"],
   "compilerOptions": {
-    "jsx": "react",
-    "declaration": true,
-    "declarationMap": true,
-    "module": "CommonJS",
     "outDir": "dist",
-    "rootDir": "src",
-    "sourceMap": true,
-    "moduleResolution": "Node",
-    "stripInternal": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2016",
+    "baseUrl": ".",
+    "declaration": true,
+    "pretty": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
     "strict": true,
-    "skipLibCheck": true
-  }
+    "lib": ["ESNEXT", "DOM", "DOM.Iterable"],
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules/**/*.ts", "demo/"]
 }

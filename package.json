@@ -2,12 +2,6 @@
   "name": "react-nowplaying",
   "version": "1.0.1",
   "description": "A cross-browser cross-device friendly React context to auto-play audio in a browser.",
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "sideEffects": false,
   "keywords": [
     "browser-audio",
     "andoird-audio",
@@ -16,11 +10,28 @@
     "cross-browser",
     "cross-device"
   ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "sideEffects": false,
   "author": "Luke Oliff <luke.oliff@deepgram.com> (https://deepgram.com)",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently --kill-others \"npm --prefix=./demo i --ignore-scripts -C ./demo && npm --prefix=./demo run dev\" \"tsc-watch --noClear\"",
-    "build": "tsc -p tsconfig.json"
+    "dev": "tsup --watch",
+    "build": "tsup"
   },
   "resolutions": {
     "typescript": "^5.4.2"
@@ -37,15 +48,25 @@
     "pretty-quick": "^4.0.0",
     "react": "^18.2.0",
     "regenerator-runtime": "^0.14.1",
-    "ts-node": "^10.9.2",
-    "tsc-watch": "^6.0.4"
+    "typescript": "^5.3.3",
+    "tsup": "^8.0.2"
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^16.8.0  || ^17 || ^18"
   },
   "engines": {
     "node": ">=18.19.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deepgram-devs/react-nowplaying"
+  },
+  "bugs": {
+    "url": "https://github.com/deepgram-devs/react-nowplaying/issues"
+  },
+  "files": [
+    "dist"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged",
