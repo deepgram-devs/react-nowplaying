@@ -3,32 +3,24 @@
 import React from "react";
 import { silence } from "./lib/contants";
 
-type NowPlayingContext = any;
-
-// type NowPlayingContext = {
-//   nowPlaying: Blob | undefined;
-//   setNowPlaying: React.Dispatch<React.SetStateAction<Blob | undefined>>;
-//   clear: () => void;
-//   player: HTMLAudioElement;
-// };
+interface NowPlayingContext extends Partial<Omit<HTMLAudioElement, "play">> {
+  player: HTMLAudioElement | undefined;
+  play: (audio: Blob, type: string) => Promise<void>;
+  resume: Function;
+  stop: Function;
+}
 
 interface NowPlayingContextInterface {
   children: React.ReactNode;
-  onPlay?: Function;
-  onFinish?: Function;
 }
 
 const NowPlayingContext = React.createContext({} as NowPlayingContext);
 
 const NowPlayingContextProvider = ({
   children,
-  onPlay = () => {},
-  onFinish = () => {},
 }: NowPlayingContextInterface) => {
   const [player, setPlayer] = React.useState<HTMLAudioElement>();
   const [source, setSource] = React.useState<HTMLSourceElement>();
-  const [type, setType] = React.useState<string>();
-  const [nowPlaying, setNowPlaying] = React.useState<Blob>();
 
   React.useEffect(() => {
     if (!player) {
@@ -44,54 +36,30 @@ const NowPlayingContextProvider = ({
     }
   }, []);
 
-  React.useEffect(() => {
+  const play = async (audio: Blob, type = "audio/mp3"): Promise<void> => {
     if (!player || !source) return;
 
-    if (nowPlaying) {
-      const data = window.URL.createObjectURL(nowPlaying);
-      source.src = data;
-      source.type = type || "audio/mp3";
+    const data = window.URL.createObjectURL(audio);
+    source.src = data;
+    source.type = type;
 
-      /**
-       * Required to make iOS devices load the audio from the blob URL.
-       */
-      player.load();
+    /**
+     * Required to make iOS devices load the audio from the blob URL.
+     */
+    player.load();
 
-      player.addEventListener("canplaythrough", function () {
-        this.play();
-        // onPlay();
-      });
-
-      player.addEventListener("ended", () => {
-        setNowPlaying(undefined);
-        // onFinish();
-      });
-    }
-  }, [nowPlaying, player, source]);
-
-  const play = (audio: Blob, type = "audio/mp3") => {
-    if (!player || !source) return;
-
-    setNowPlaying(audio);
-    setType(type);
+    return player.play();
   };
 
   const stop = () => {
-    if (!player || !source) return;
+    if (!player) return;
 
     player.pause();
     player.currentTime = 0;
-    setNowPlaying(undefined);
-  };
-
-  const pause = () => {
-    if (!player || !source) return;
-
-    player.pause();
   };
 
   const resume = () => {
-    if (!player || !source) return;
+    if (!player) return;
 
     player.play();
   };
@@ -101,14 +69,14 @@ const NowPlayingContextProvider = ({
       value={{
         player,
         play,
-        pause,
         resume,
         stop,
+        ...player,
       }}
     >
       {children}
       <audio id="react-nowplaying">
-        <source id="react-nowplaying-src" src={silence} type={type} />
+        <source id="react-nowplaying-src" src={silence} type={"audio/mp3"} />
       </audio>
     </NowPlayingContext.Provider>
   );
