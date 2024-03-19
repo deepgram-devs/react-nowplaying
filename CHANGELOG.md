@@ -1,5 +1,12 @@
 Change Log
 
+# [1.1.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.0.2...1.1.0) (2024-03-19)
+
+
+### Features
+
+* expose native player functionality rather than wrap it ([236f2dc](https://github.com/deepgram-devs/react-nowplaying/commit/236f2dca300238ce7ac14e31bdf6e3cff3b21f8d))
+
 ## [1.0.2](https://github.com/deepgram-devs/react-nowplaying/compare/1.0.1...1.0.2) (2024-03-19)
 
 
