@@ -78,8 +78,7 @@ export default function MyComponent() {
 In our recent project, we faced challenges with automatically playing audio across different browsers and devices, including Safari, Firefox, and all iOS devices. Our solution involved complex adjustments to enable automatic playback of audio files (in Blob format) received from our API. Instead of utilizing the Web Audio API, we opted for a workaround that involves a hidden audio element on the webpage. Here’s how it works:
 
 - When audio is ready to play, the webpage updates a hidden audio element with the audio source and type, allowing the audio to play automatically.
-- We created a custom hook that mimics the audio controls you'd find in the Web Audio API, making it easier to manage playback. This includes features for playing and finishing, with callbacks named onPlay and onFinish to handle these actions.
-- Additionally, this custom hook provides a player object, which can be used to attach custom event handlers for more advanced audio control.
+- We created a custom hook that exposes an instance of the audio element, making it easier to manage playback. The hook extends the interface of an audio element.
 
 This approach allows for seamless audio playback across a wide range of browsers and devices, ensuring users have a consistent experience.
 
