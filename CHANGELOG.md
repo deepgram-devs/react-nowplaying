@@ -1,5 +1,12 @@
 Change Log
 
+# [1.2.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.1.0...1.2.0) (2024-03-20)
+
+
+### Features
+
+* add support for string and MediaSource types ([3dfdace](https://github.com/deepgram-devs/react-nowplaying/commit/3dfdace57a2305f5744cfd69200a164cf7c1461d))
+
 # [1.1.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.0.2...1.1.0) (2024-03-19)
 
 
