@@ -4,17 +4,9 @@
 
 A cross-browser cross-device friendly React context to auto-play audio in a browser.
 
-## Demo / Development
+## Demo
 
-This repo has a self-contained demo that does not get bundled with the package. To run this locally, you simply need to do the following;
-
-```bash
-# install dependencies
-npm i
-
-# run local demo
-npm run dev
-```
+See it in action here: [https://react-nowplaying.vercel.app](https://react-nowplaying.vercel.app/)
 
 ## Getting Started
 
@@ -54,6 +46,8 @@ export default function RootLayout({
 }
 ```
 
+### Play Blob data
+
 Now, you can provide your data `Blob` to the play function.
 
 ```tsx
@@ -70,6 +64,41 @@ export default function MyComponent() {
       Play Audio
     </button>
   );
+}
+```
+
+### Play a URL string
+
+Now, you can provide your url `string` to the play function.
+
+```tsx
+export default function MyComponent() {
+  const { play } = useNowPlaying();
+
+  const playAudio = () => {
+    // get your audio blob
+    play("https://your-file.com/audio.mp3", "audio/mp3");
+  };
+
+  return (
+    <button type="button" onClick={() => playAudio()}>
+      Play Audio
+    </button>
+  );
+}
+```
+
+## Audio Controls
+
+Using our context's hook, we return native controls from the `<audio>` native, with the exception of `play()`. If you `pause()` your audio, you can now use `resume()`.
+
+The `player` property is also available from the hook, which is a native reference to our `<audio>` tag, giving you the ability to add your own event listeners and control it as you need to.
+
+```ts
+export default function MyComponent() {
+  const { pause, resume } = useNowPlaying();
+
+  //... build your controls
 }
 ```
 

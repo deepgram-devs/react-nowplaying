@@ -5,7 +5,7 @@ import { silence } from "./lib/contants";
 
 interface NowPlayingContext extends Partial<Omit<HTMLAudioElement, "play">> {
   player: HTMLAudioElement | undefined;
-  play: (audio: Blob, type: string) => Promise<void>;
+  play: (audio: MediaSource | Blob | string, type: string) => Promise<void>;
   resume: Function;
   stop: Function;
 }
@@ -36,11 +36,19 @@ const NowPlayingContextProvider = ({
     }
   }, []);
 
-  const play = async (audio: Blob, type = "audio/mp3"): Promise<void> => {
+  const play = async (
+    audio: MediaSource | Blob | string,
+    type = "audio/mp3"
+  ): Promise<void> => {
     if (!player || !source) return;
 
-    const data = window.URL.createObjectURL(audio);
-    source.src = data;
+    let url = audio as string;
+
+    if (typeof audio !== "string") {
+      url = window.URL.createObjectURL(audio);
+    }
+
+    source.src = url;
     source.type = type;
 
     /**
