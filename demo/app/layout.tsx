@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="h-dvh">
+      <body className={`h-full dark ${inter.className}`}>
         <NowPlayingContextProvider>{children}</NowPlayingContextProvider>
       </body>
     </html>
