@@ -6,7 +6,7 @@ A cross-browser cross-device friendly React context to auto-play audio in a brow
 
 ## Demo
 
-See it in action here: [https://react-nowplaying.vercel.app](https://react-nowplaying.vercel.app/)
+See it in action here: [https://react-nowplaying.vercel.app](https://react-nowplaying.vercel.app/?utm_source=readme.md)
 
 ## Getting Started
 
