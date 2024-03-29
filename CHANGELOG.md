@@ -1,5 +1,12 @@
 Change Log
 
+# [1.3.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.2.0...1.3.0) (2024-03-29)
+
+
+### Features
+
+* add uid for the track playing, so it can be identified without groking the blob ([64085ae](https://github.com/deepgram-devs/react-nowplaying/commit/64085ae5debf540d709d457560c098d325e8e789))
+
 # [1.2.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.1.0...1.2.0) (2024-03-20)
 
 
