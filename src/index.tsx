@@ -5,9 +5,14 @@ import { silence } from "./lib/contants";
 
 interface NowPlayingContext extends Partial<Omit<HTMLAudioElement, "play">> {
   player: HTMLAudioElement | undefined;
-  play: (audio: MediaSource | Blob | string, type: string) => Promise<void>;
-  resume: Function;
-  stop: Function;
+  play: (
+    audio: MediaSource | Blob | string,
+    type?: string,
+    uid?: string
+  ) => Promise<void>;
+  resume: () => void;
+  stop: () => void;
+  uid: string | undefined;
 }
 
 interface NowPlayingContextInterface {
@@ -21,6 +26,7 @@ const NowPlayingContextProvider = ({
 }: NowPlayingContextInterface) => {
   const [player, setPlayer] = React.useState<HTMLAudioElement>();
   const [source, setSource] = React.useState<HTMLSourceElement>();
+  const [uid, setUid] = React.useState<string>();
 
   React.useEffect(() => {
     if (!player) {
@@ -38,9 +44,11 @@ const NowPlayingContextProvider = ({
 
   const play = async (
     audio: MediaSource | Blob | string,
-    type = "audio/mp3"
+    type = "audio/mp3",
+    uid?: string
   ): Promise<void> => {
     if (!player || !source) return;
+    if (uid) setUid(uid);
 
     let url = audio as string;
 
@@ -79,6 +87,7 @@ const NowPlayingContextProvider = ({
         play,
         resume,
         stop,
+        uid,
         ...player,
       }}
     >
