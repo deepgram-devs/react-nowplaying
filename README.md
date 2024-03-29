@@ -1,5 +1,6 @@
 # React NowPlaying
 
+![NPM Version](https://img.shields.io/npm/v/react-nowplaying)
 [![Discord](https://dcbadge.vercel.app/api/server/xWRaCDBtW4?style=flat)](https://discord.gg/xWRaCDBtW4)
 
 A cross-browser cross-device friendly React context to auto-play audio in a browser.
