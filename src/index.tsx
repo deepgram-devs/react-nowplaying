@@ -63,6 +63,10 @@ const NowPlayingContextProvider = ({
   const [uid, setUid] = React.useState<string>();
 
   React.useEffect(() => {
+    const onEnded = () => {
+      setUid(undefined);
+    }
+    
     if (!player) {
       const player: HTMLAudioElement = document.getElementById(
         "react-nowplaying"
@@ -71,8 +75,14 @@ const NowPlayingContextProvider = ({
         "react-nowplaying-src"
       ) as HTMLSourceElement;
 
+      player.addEventListener('ended', onEnded)
+
       setPlayer(player);
       setSource(source);
+    }
+
+    return () => {
+      player.removeEventListener('ended', onEnded)
     }
   }, []);
 
@@ -97,7 +107,7 @@ const NowPlayingContextProvider = ({
      * Required to make iOS devices load the audio from the blob URL.
      */
     player.load();
-
+    
     return player.play();
   };
 
