@@ -20,11 +20,7 @@ interface NowPlayingContext extends Partial<Omit<HTMLAudioElement, "play">> {
    * @param uid An optional unique identifier for the audio source.
    * @returns A promise that resolves when the audio starts playing.
    */
-  play: (
-    audio: MediaSource | Blob | string,
-    type?: string,
-    uid?: string
-  ) => Promise<void>;
+  play: (audio: MediaSource | Blob | string, type?: string, uid?: string) => Promise<void>;
 
   /**
    * Resumes audio playback from the current position.
@@ -55,18 +51,19 @@ const NowPlayingContext = React.createContext({} as NowPlayingContext);
  * Provides a React context for managing audio playback within the app.
  * This component sets up the audio player and source elements, and provides play, stop, and resume functions.
  */
-const NowPlayingContextProvider = ({
-  children,
-}: NowPlayingContextInterface) => {
+const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => {
   const [player, setPlayer] = React.useState<HTMLAudioElement>();
   const [source, setSource] = React.useState<HTMLSourceElement>();
   const [uid, setUid] = React.useState<string>();
+  React.useEffect(() => {
+    console.log(uid);
+  }, [uid]);
 
   React.useEffect(() => {
     const onEnded = () => {
       setUid(undefined);
-    }
-    
+    };
+
     if (!player) {
       const player: HTMLAudioElement = document.getElementById(
         "react-nowplaying"
@@ -75,15 +72,15 @@ const NowPlayingContextProvider = ({
         "react-nowplaying-src"
       ) as HTMLSourceElement;
 
-      player.addEventListener('ended', onEnded)
+      player.addEventListener("ended", onEnded);
 
       setPlayer(player);
       setSource(source);
     }
 
     return () => {
-      player.removeEventListener('ended', onEnded)
-    }
+      player?.removeEventListener("ended", onEnded);
+    };
   }, []);
 
   const play = async (
@@ -107,13 +104,14 @@ const NowPlayingContextProvider = ({
      * Required to make iOS devices load the audio from the blob URL.
      */
     player.load();
-    
+
     return player.play();
   };
 
   const stop = () => {
     if (!player) return;
 
+    setUid(undefined);
     player.pause();
     player.currentTime = 0;
   };
