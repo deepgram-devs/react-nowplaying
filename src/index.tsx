@@ -55,9 +55,6 @@ const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => 
   const [player, setPlayer] = React.useState<HTMLAudioElement>();
   const [source, setSource] = React.useState<HTMLSourceElement>();
   const [uid, setUid] = React.useState<string>();
-  React.useEffect(() => {
-    console.log(uid);
-  }, [uid]);
 
   React.useEffect(() => {
     const onEnded = () => {
