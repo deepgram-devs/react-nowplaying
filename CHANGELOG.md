@@ -1,5 +1,12 @@
 Change Log
 
+# [1.4.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.3.0...1.4.0) (2024-04-11)
+
+
+### Features
+
+* clear audio uid on finish and when stopped manually ([9791f25](https://github.com/deepgram-devs/react-nowplaying/commit/9791f254f56751f871b8aa99a8d0a67b73349845))
+
 # [1.3.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.2.0...1.3.0) (2024-03-29)
 
 

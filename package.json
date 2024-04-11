@@ -1,6 +1,6 @@
 {
   "name": "react-nowplaying",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A cross-browser cross-device friendly React context to auto-play audio in a browser.",
   "keywords": [
     "browser-audio",
