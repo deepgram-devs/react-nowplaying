@@ -23,6 +23,11 @@ interface NowPlayingContext extends Partial<Omit<HTMLAudioElement, "play">> {
   play: (audio: MediaSource | Blob | string, type?: string, uid?: string) => Promise<void>;
 
   /**
+  * Pauses audio playback at the current position.
+  */
+  pause: () => void;
+
+  /**
    * Resumes audio playback from the current position.
    */
   resume: () => void;
@@ -105,6 +110,12 @@ const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => 
     return player.play();
   };
 
+  const pause = () => {
+    if (!player) return;
+    
+    player.pause();
+  };
+
   const stop = () => {
     if (!player) return;
 
@@ -124,6 +135,7 @@ const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => 
       value={{
         player,
         play,
+        pause,
         resume,
         stop,
         uid,
