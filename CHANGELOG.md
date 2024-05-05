@@ -1,5 +1,12 @@
 Change Log
 
+## [1.5.1](https://github.com/deepgram-devs/react-nowplaying/compare/1.5.0...1.5.1) (2024-05-05)
+
+
+### Bug Fixes
+
+* random character order ([5ab6147](https://github.com/deepgram-devs/react-nowplaying/commit/5ab6147977deaa0ccf2c203044cde4c56ff56d3c))
+
 # [1.4.0](https://github.com/deepgram-devs/react-nowplaying/compare/1.3.0...1.4.0) (2024-04-11)
 
 
