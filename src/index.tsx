@@ -2,6 +2,7 @@
 
 import React from "react";
 import { silence } from "./lib/contants";
+import { randomId } from "./lib/utils";
 
 /**
  * React context for managing audio playback, including playing, stopping, and resuming audio tracks.
@@ -23,9 +24,9 @@ interface NowPlayingContext extends Partial<Omit<HTMLAudioElement, "play">> {
   play: (audio: MediaSource | Blob | string, type?: string, uid?: string) => Promise<void>;
 
   /**
-  * Pauses audio playback at the current position.
-  */
-  pause: () => void;
+   * Pauses audio playback at the current position.
+   */
+  pause?: () => void;
 
   /**
    * Resumes audio playback from the current position.
@@ -91,7 +92,7 @@ const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => 
     uid?: string
   ): Promise<void> => {
     if (!player || !source) return;
-    if (uid) setUid(uid);
+    uid ? setUid(uid) : setUid(randomId(7));
 
     let url = audio as string;
 
@@ -108,12 +109,6 @@ const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => 
     player.load();
 
     return player.play();
-  };
-
-  const pause = () => {
-    if (!player) return;
-    
-    player.pause();
   };
 
   const stop = () => {
@@ -135,7 +130,7 @@ const NowPlayingContextProvider = ({ children }: NowPlayingContextInterface) => 
       value={{
         player,
         play,
-        pause,
+        pause: player?.pause,
         resume,
         stop,
         uid,
