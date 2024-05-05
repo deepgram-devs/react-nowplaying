@@ -1,5 +1,7 @@
 # React NowPlaying
 
+> Don’t Be the Grinch! Or Cross-Browser Compatibility Problems — Mike Mackrory
+
 ![NPM Version](https://img.shields.io/npm/v/react-nowplaying)
 [![Discord](https://dcbadge.vercel.app/api/server/xWRaCDBtW4?style=flat)](https://discord.gg/xWRaCDBtW4)
 
